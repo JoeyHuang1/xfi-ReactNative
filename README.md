@@ -37,5 +37,13 @@ sdk.dir = /Users/joey/Library/Android/sdk
 May need to use Java 8
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 
-#### Thermolist is missing after login
-The same web content work well in iOS. For Android request, server returns thermostats without attribSet attribute, even the request data is the same as iOS. Need server to fix it, or use API for individual device, rather than /seeds API.
+#### Can't find variable: Symbol
+Install es6-symbol (yarn add es6-symbol)
+and import it in code
+import 'es6-symbol/implement'
+
+like https://github.com/redux-saga/redux-saga/issues/54
+
+#### Objects are not valid as a React child
+After his Cmd+M for Remote Debug JS, the problem goes away. Ref https://github.com/facebook/react-native/issues/15786
+
