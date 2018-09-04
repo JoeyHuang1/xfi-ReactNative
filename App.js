@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import Login from './src/Login.js'
 import ThermoList from './src/ThermoList.js'
 import { connect } from 'react-redux'
+import Symbol from 'es6-symbol/implement'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -28,7 +29,7 @@ class App extends Component<Props> {
       return (<Login/>)
     }
     else {
-      return(<ThermoList />)
+      return(<ThermoList/>)
     }
   }
 }
@@ -41,21 +42,3 @@ export default connect(
   mapStateToProps
 )(App);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

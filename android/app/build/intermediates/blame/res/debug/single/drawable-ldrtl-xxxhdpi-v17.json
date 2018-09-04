@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable-ldrtl-xxxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
+    }
+]

@@ -3,7 +3,9 @@ import thermoService from './thermoService.js'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import {setTempeDoneAction} from './actions'
-import {Platform, StyleSheet, Text, View, Slider, SafeAreaView} from 'react-native';
+import {Text, Slider, SafeAreaView, View} from 'react-native';
+import styles from './style.js'
+import 'es6-symbol/implement'
 
 const minTempe=50
 const maxTempe=90
@@ -36,22 +38,20 @@ class Thermo extends React.Component{
 
   render(){
     return (
-      <SafeAreaView className='thermoContainer'>
-        <View className='thermoTitle' >
-          <Text>Thermostat {this.props.name}:</Text>
-          <Text className={this.state.tempeClass}> {this.state.sliderValue} </Text>
+      <SafeAreaView >
+        <View style={styles.thermo}>
+          <Text style={styles.normalText}>Thermostat {this.props.name}:
+            <Text > {this.state.sliderValue} </Text>
+          </Text>
+          <Slider value={this.state.sliderValue} 
+                minimumValue={minTempe} maximumValue={maxTempe}
+                step={1}
+                minimumTrackTintColor="red"
+                maximumTrackTintColor="blue"
+                onValueChange={this.onSliderChange}
+                onSlidingComplete={this.onAfterChange}
+          />
         </View>
-        <Slider className='thermoSlider' value={this.state.sliderValue} 
-              minimumValue={minTempe} maximumValue={maxTempe}
-              step={1}
-              minimumTrackTintColor="red"
-              maximumTrackTintColor="blue"
-              tipProps={{ overlayClassName: 'foo' }}
-              trackStyle={[{ backgroundColor: 'red', height: 10 }]}
-              railStyle={ {backgroundColor: '#82caff', height: 10 }}
-              onValueChange={this.onSliderChange}
-              onSlidingComplete={this.onAfterChange}
-        />
       </SafeAreaView>
     );
   }

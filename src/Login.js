@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import {loginAction} from './actions'
 import loginService from './loginService.js'
 import { connect } from 'react-redux'
-import {Platform, StyleSheet, Text, View, Button, TextInput, SafeAreaView} from 'react-native';
+import {Text,  Button, TextInput, SafeAreaView} from 'react-native';
+import styles from './style.js'
+import 'es6-symbol/implement'
 
-const inputStyle={}//'marginLeft':'10px'}
 const loginErrMsg = 'Login failed. Please try again.'
 
 class Login extends React.Component {
@@ -49,24 +50,26 @@ class Login extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>Please login</Text>
-          <TextInput type='text' 
-            value={this.state.account} 
-            onChangeText={this.accountChange}
-            autoCapitalize={false}
-            placeholder='email address' style={inputStyle}/>
-          <TextInput type='password'  
-            value={this.state.password} 
-            autoCapitalize={false}
-            textContentType="password"
-            secureTextEntry="true"
-            onChangeText={this.passwordChange}
-            placeholder='password' style={inputStyle}/>
-          <Button 
-            onPress={this.handleSubmit}
-            type='submit' title='Login' style={inputStyle} 
-            className={this.state.loginClass}/>
-          <Text>{this.state.errMsg}</Text>
+        <Text style={styles.welcome}>Please login:</Text>
+        <TextInput 
+          style={styles.input}
+          value={this.state.account} 
+          onChangeText={this.accountChange}
+          autoCapitalize={false}
+          placeholder="email address" />
+        <TextInput  
+          style={styles.input}
+          value={this.state.password} 
+          autoCapitalize={false}
+          textContentType="password"
+          secureTextEntry={true}
+          onChangeText={this.passwordChange}
+          placeholder="password" />
+        <Button 
+          onPress={this.handleSubmit}
+          title="Login"
+        />
+        <Text>{this.state.errMsg}</Text>
       </SafeAreaView>
     );
   }

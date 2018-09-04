@@ -13,7 +13,7 @@ const store = createStore(rootReducer, {}, install())
 
 const Root = () => (
     <Provider store={store}>
-      <App />
+      <App/>
     </Provider>
   )
 

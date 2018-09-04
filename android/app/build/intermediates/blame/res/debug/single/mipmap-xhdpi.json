@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/joey/react/native/comcast/xfi/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher_round.png",
+        "source": "/Users/joey/react/native/comcast/xfi/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    }
+]

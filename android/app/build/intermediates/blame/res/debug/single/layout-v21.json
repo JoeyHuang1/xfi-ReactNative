@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/joey/.android/build-cache/9e9c2226348d63d6e2ed38e6aacf5b896927f079/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/joey/.android/build-cache/9e9c2226348d63d6e2ed38e6aacf5b896927f079/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/joey/.android/build-cache/9e9c2226348d63d6e2ed38e6aacf5b896927f079/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/joey/.android/build-cache/9e9c2226348d63d6e2ed38e6aacf5b896927f079/output/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

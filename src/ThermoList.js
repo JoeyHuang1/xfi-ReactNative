@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import thermoListService from './thermoListService.js'
 import {gotSeedsAction} from './actions'
 import { connect } from 'react-redux'
-import {Platform, StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {Text, View, SafeAreaView} from 'react-native';
+import styles from './style.js'
+import 'es6-symbol/implement'
 
 const noDevErrMsg='No thermostat found.'
 const noHCDevErrMsg = 'No heat/cool thermostat found.'
@@ -51,11 +53,10 @@ class ThermoList extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <View>
-          <Text>Account </Text> 
-          <Text className={this.state.accountClass}> {this.props.account} </Text>
-        </View>
         <Text>{this.state.errMsg}</Text>
+        <Text style={styles.welcome}>Account 
+          <Text> {this.props.account} </Text>
+        </Text> 
         {this.listThermo()}
       </SafeAreaView>
     );
