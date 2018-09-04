@@ -55,12 +55,12 @@ class Login extends React.Component {
           style={styles.input}
           value={this.state.account} 
           onChangeText={this.accountChange}
-          autoCapitalize={false}
+          autoCapitalize={"none"}
           placeholder="email address" />
         <TextInput  
           style={styles.input}
           value={this.state.password} 
-          autoCapitalize={false}
+          autoCapitalize={"none"}
           textContentType="password"
           secureTextEntry={true}
           onChangeText={this.passwordChange}
