@@ -44,6 +44,13 @@ import 'es6-symbol/implement'
 
 like https://github.com/redux-saga/redux-saga/issues/54
 
-#### Objects are not valid as a React child
-After his Cmd+M for Remote Debug JS, the problem goes away. Ref https://github.com/facebook/react-native/issues/15786
+#### Objects are not valid as a React child 
+#### or Symbol not found
+Add following line to the beginning of index.js
+
+> import "babel-polyfill"
+
+reference https://github.com/redux-saga/redux-saga/issues/54
+
+There are some other post to add 'es6-symbol' module. That will fix the Symbol not found problem. But it introduce the "Objects are not valid as a React child" problem in redux.
 
