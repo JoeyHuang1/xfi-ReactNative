@@ -8,20 +8,20 @@
         "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_vector_test.xml"
     },
     {
-        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
-        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_btn_check_material.xml"
-    },
-    {
         "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
         "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_btn_radio_material.xml"
     },
     {
-        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
-        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_spinner_textfield_background_material.xml"
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
+        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_btn_check_material.xml"
     },
     {
         "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
         "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/joey/.android/build-cache/e96d0d6ba3342e943242dce4b7ec18176d4277ad/output/res/drawable/abc_spinner_textfield_background_material.xml"
     },
     {
         "merged": "/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
