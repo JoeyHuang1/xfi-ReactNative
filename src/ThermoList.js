@@ -6,7 +6,6 @@ import {gotSeedsAction} from './actions'
 import { connect } from 'react-redux'
 import {Text, View, SafeAreaView} from 'react-native';
 import styles from './style.js'
-import 'es6-symbol/implement'
 
 const noDevErrMsg='No thermostat found.'
 const noHCDevErrMsg = 'No heat/cool thermostat found.'
@@ -21,7 +20,6 @@ class ThermoList extends React.Component {
   componentDidMount() {
     this.getThermoList()
   }
-
 
   async getThermoList(){
     this.setState({accountClass:'blinkClass'})

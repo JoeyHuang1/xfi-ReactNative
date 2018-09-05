@@ -62,4 +62,5 @@ typings/
 
 ios/build/
 android/build/
-
+android/.gradle/*/taskHistory/
+android/app/build/reports/

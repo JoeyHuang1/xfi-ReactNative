@@ -5,12 +5,10 @@ import { connect } from 'react-redux'
 import {setTempeDoneAction} from './actions'
 import {Text, Slider, SafeAreaView, View} from 'react-native';
 import styles from './style.js'
-import 'es6-symbol/implement'
 
 const minTempe=50
 const maxTempe=90
 
-  
 class Thermo extends React.Component{
   constructor(props) {
     super(props);

@@ -5,7 +5,6 @@ import loginService from './loginService.js'
 import { connect } from 'react-redux'
 import {Text,  Button, TextInput, SafeAreaView} from 'react-native';
 import styles from './style.js'
-import 'es6-symbol/implement'
 
 const loginErrMsg = 'Login failed. Please try again.'
 
@@ -22,8 +21,6 @@ class Login extends React.Component {
   accountChange=(text)=>{
     this.setState({account: text})
   }
-
-
 
   getAccessToken= async (account, password)=>{    
     this.setState({loginClass:'blinkClass'})

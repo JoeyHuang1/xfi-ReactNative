@@ -1,11 +1,13 @@
 /** @format */
+
+// Need following babel-polyfill to fix Android error aboit
+// Objects are not valid as a React child or Symbol not found
 import "babel-polyfill"
 
 import {AppRegistry} from 'react-native';
 import React, {Component} from 'react';
 import App from './App';
 import {name as appName} from './app.json';
-
 
 import rootReducer from './src/reducers'
 import { Provider } from 'react-redux'
