@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Sep 05 14:33:55 PDT 2018
+#Wed Sep 05 14:56:20 PDT 2018
 20.base=/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/resources-release.ap_
 143.base=/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/resources-release.ap_
 340.file=/Users/joey/react/native/comcast/xfi/android/app/build/intermediates/res/resources-release.ap_/res/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png
