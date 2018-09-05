@@ -52,5 +52,5 @@ Add following line to the beginning of index.js
 
 reference https://github.com/redux-saga/redux-saga/issues/54
 
-There are some other post to add 'es6-symbol' module. That will fix the Symbol not found problem. But it introduce the "Objects are not valid as a React child" problem in redux.
+There are some other post to add 'es6-symbol' module for fixing this. That will fix the Symbol not found problem. But it introduce the "Objects are not valid as a React child" problem in redux.
 
