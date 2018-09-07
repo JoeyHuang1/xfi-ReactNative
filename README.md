@@ -31,7 +31,7 @@ or
 
 #### run-android error about Android SDK
 May need to set ANDROID_HOME in android/local.properties file
-sdk.dir = /Users/joey/Library/Android/sdk
+> sdk.dir = /Users/joey/Library/Android/sdk
 
 #### run-android error about Java Path
 May need to use Java 8
