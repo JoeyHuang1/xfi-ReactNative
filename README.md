@@ -35,7 +35,8 @@ sdk.dir = /Users/joey/Library/Android/sdk
 
 #### run-android error about Java Path
 May need to use Java 8
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
+
+> export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 
 #### Can't find variable: Symbol
 Install es6-symbol (yarn add es6-symbol)
