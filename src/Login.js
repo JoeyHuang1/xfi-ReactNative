@@ -8,7 +8,7 @@ import styles from './style.js'
 
 const loginErrMsg = 'Login failed. Please try again.'
 
-class Login extends React.Component {
+class Login extends React.PureComponent {
     constructor(props) {
     super(props);
     this.state = {account:'', password:'', errMsg:'', loginClass:''};

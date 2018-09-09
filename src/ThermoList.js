@@ -10,10 +10,20 @@ import styles from './style.js'
 const noDevErrMsg='No thermostat found.'
 const noHCDevErrMsg = 'No heat/cool thermostat found.'
 
-class ThermoList extends React.Component {
+function renderThermo(thermos){
+  let thermoList=[]
+  for (let key in thermos){
+    let thermo = thermos[key]
+    thermoList.push(<Thermo key={thermo.seedId}
+      seedId={thermo.seedId}/>)
+  }
+  return thermoList
+}
+
+class ThermoList extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { errMsg:'', accountClass:''};
+    this.state = { errMsg:'', accountClass:'', thermoList:[]};
     this.getThermoList = this.getThermoList.bind(this)
   }
 
@@ -38,15 +48,7 @@ class ThermoList extends React.Component {
     this.props.gotThermos(thermoList)
   }
   
-  listThermo=()=>{
-    let thermoList=[]
-    for (let key in this.props.thermos){
-      let thermo = this.props.thermos[key]
-      thermoList.push(<Thermo key={thermo.seedId}
-        seedId={thermo.seedId}/>)
-    }
-    return thermoList
-  }
+
 
   render() {
     return (
@@ -55,7 +57,7 @@ class ThermoList extends React.Component {
         <Text style={styles.welcome}>Account 
           <Text> {this.props.account} </Text>
         </Text> 
-        {this.listThermo()}
+        {this.props.thermoList}
       </SafeAreaView>
     );
   }
@@ -67,7 +69,10 @@ ThermoList.propTypes = {
 };
 
 const mapStateToProps = function(state) {
-  return {...state.loginReducer, ...state.thermoListReducer};
+  let thermoList=renderThermo(state.thermoListReducer.thermos)
+
+  return {...state.loginReducer, ...state.thermoListReducer, 
+      'thermoList':thermoList};
 }
 
 const mapDispatchToProps = function(dispatch, ownProps) {

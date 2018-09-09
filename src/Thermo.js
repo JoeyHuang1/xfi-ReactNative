@@ -9,7 +9,7 @@ import styles from './style.js'
 const minTempe=50
 const maxTempe=90
 
-class Thermo extends React.Component{
+class Thermo extends React.PureComponent{
   constructor(props) {
     super(props);
     this.state = {
