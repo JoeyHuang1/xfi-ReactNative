@@ -17,7 +17,11 @@ class Thermo extends React.PureComponent{
       sliderValue: this.props.temperature,
     };
   }
-  
+
+  componentDidMount() {
+    console.log('thermo componentDidMount')
+  }
+
   onSliderChange = (sliderValue) => {
     this.setState({sliderValue});
   }
@@ -35,6 +39,7 @@ class Thermo extends React.PureComponent{
   }
 
   render(){
+    console.log('thermo redner '+this.state.sliderValue)
     return (
       <SafeAreaView >
         <View style={styles.thermo}>

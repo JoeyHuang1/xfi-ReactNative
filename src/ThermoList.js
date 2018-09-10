@@ -14,7 +14,7 @@ function renderThermo(thermos){
   let thermoList=[]
   for (let key in thermos){
     let thermo = thermos[key]
-    thermoList.push(<Thermo key={thermo.seedId}
+    thermoList.push(<Thermo style={{flex:1}} key={thermo.seedId}
       seedId={thermo.seedId}/>)
   }
   return thermoList
@@ -28,6 +28,7 @@ class ThermoList extends React.PureComponent {
   }
 
   componentDidMount() {
+    console.log('thermolist componentDidMount')
     this.getThermoList()
   }
 
@@ -51,13 +52,17 @@ class ThermoList extends React.PureComponent {
 
 
   render() {
+    console.log('thermolist render')
     return (
       <SafeAreaView>
         <Text>{this.state.errMsg}</Text>
         <Text style={styles.welcome}>Account 
           <Text> {this.props.account} </Text>
         </Text> 
-        {this.props.thermoList}
+        <View style={{ height:600, 
+          justifyContent:"space-evenly"}}>
+          {this.props.thermoList}
+        </View>
       </SafeAreaView>
     );
   }

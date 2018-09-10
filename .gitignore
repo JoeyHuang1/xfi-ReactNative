@@ -61,6 +61,7 @@ typings/
 .next
 
 ios/build/
-android/build/
+android/app/build/
 android/.gradle/*/taskHistory/
-android/app/build/reports/
+android/build
+

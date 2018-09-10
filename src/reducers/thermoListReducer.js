@@ -11,10 +11,15 @@ const thermoListReducer = function(state, action) {
 
 
   if ('SET_TEMPE_DONE'===action.type){
-    let seedIdAttr =action.seed.seedId
-    let newVal={'thermos':{}}
-    newVal.thermos[seedIdAttr]={'temperature':{$set: action.seed.temperature}}
-    newState=update(state, newVal);
+    newState.thermos[action.seed.seedId].temperature=action.seed.temperature
+    // Don't want redux be aware of this change to trigger new render to ThermoList
+    // Otherwise, it will also re-render slider that makes slider non-responding
+    // in Android from time to time after one sliding
+    
+    //let seedIdAttr =action.seed.seedId
+    //let newVal={'thermos':{}}
+    //newVal.thermos[seedIdAttr]={'temperature':{$set: action.seed.temperature}}
+    //newState=update(state, newVal);
   }
 
   return newState;
