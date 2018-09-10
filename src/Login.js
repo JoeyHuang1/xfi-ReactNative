@@ -3,15 +3,17 @@ import PropTypes from 'prop-types'
 import {loginAction} from './actions'
 import loginService from './loginService.js'
 import { connect } from 'react-redux'
-import {Text,  Button, TextInput, SafeAreaView} from 'react-native';
+import {Text,  Button, TextInput, SafeAreaView, ActivityIndicator} from 'react-native';
 import styles from './style.js'
 
-const loginErrMsg = 'Login failed. Please try again.'
+const loginErrMsg = <Text>Login failed. Please try again.</Text>
+const loadingIcon = <ActivityIndicator size="small" color="#00ff00" />
 
 class Login extends React.PureComponent {
     constructor(props) {
     super(props);
-    this.state = {account:'', password:'', errMsg:'', loginClass:''};
+    this.state = {account:'', password:'', errMsg:null, loginClass:'',
+      showLoading:null};
   }
 
   passwordChange=(text)=>{
@@ -23,11 +25,11 @@ class Login extends React.PureComponent {
   }
 
   getAccessToken= async (account, password)=>{    
-    this.setState({loginClass:'blinkClass'})
-    let errMsg=''
+    let errMsg=null
+    this.setState({loginClass:'blinkClass', showloading:loadingIcon, errMsg})
     try {
       let respObj = await loginService(account, password) 
-      this.setState({errMsg: '', loginClass:''})
+      this.setState({errMsg: null, loginClass:'', showloading:null})
       this.props.afterLogin(respObj.access_token, respObj.fullName)
     } catch(e) {
       console.log(new Error(e))
@@ -35,7 +37,7 @@ class Login extends React.PureComponent {
       // can't move this setState after catch.
       // It will report warning in console log since 
       // afterLogin() already unmount login component
-      this.setState({errMsg , loginClass:''}) 
+      this.setState({errMsg , loginClass:'', showloading:null}) 
     }
   }
   
@@ -66,7 +68,8 @@ class Login extends React.PureComponent {
           onPress={this.handleSubmit}
           title="Login"
         />
-        <Text>{this.state.errMsg}</Text>
+        {this.state.showloading}
+        {this.state.errMsg}
       </SafeAreaView>
     );
   }

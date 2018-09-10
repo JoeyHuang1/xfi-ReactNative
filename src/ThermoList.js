@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import thermoListService from './thermoListService.js'
 import {gotSeedsAction} from './actions'
 import { connect } from 'react-redux'
-import {Text, View, SafeAreaView} from 'react-native';
+import {Text, View, SafeAreaView, RefreshControl, ScrollView} from 'react-native';
 import styles from './style.js'
 
 const noDevErrMsg='No thermostat found.'
@@ -12,8 +12,8 @@ const noHCDevErrMsg = 'No heat/cool thermostat found.'
 
 function renderThermo(thermos){
   let thermoList=[]
-  for (let key in thermos){
-    let thermo = thermos[key]
+  for (let attr in thermos){
+    let thermo = thermos[attr]
     thermoList.push(<Thermo style={{flex:1}} key={thermo.seedId}
       seedId={thermo.seedId}/>)
   }
@@ -23,12 +23,22 @@ function renderThermo(thermos){
 class ThermoList extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { errMsg:'', accountClass:'', thermoList:[]};
+    this.state = { errMsg:'', accountClass:'', thermoList:[],
+          refreshing:false};
     this.getThermoList = this.getThermoList.bind(this)
   }
 
   componentDidMount() {
     this.getThermoList()
+  }
+
+  _onRefresh = async ()=>{
+    this.setState({refreshing: true});
+    try{
+      await this.getThermoList()
+    }
+    catch(e){}
+    this.setState({refreshing: false});
   }
 
   async getThermoList(){
@@ -53,14 +63,23 @@ class ThermoList extends React.PureComponent {
   render() {
     return (
       <SafeAreaView>
-        <Text>{this.state.errMsg}</Text>
-        <Text style={styles.welcome}>Account 
-          <Text> {this.props.account} </Text>
-        </Text> 
-        <View style={{ height:600, 
-          justifyContent:"space-evenly"}}>
-          {this.props.thermoList}
-        </View>
+        <ScrollView 
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }
+        >
+            <Text>{this.state.errMsg}</Text>
+            <Text style={styles.welcome}>Account 
+              <Text> {this.props.account} </Text>
+            </Text> 
+            <View style={{ height:600, 
+              justifyContent:"space-evenly"}}>
+              {this.props.thermoList}
+            </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }

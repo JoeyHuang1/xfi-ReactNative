@@ -9,7 +9,7 @@ import styles from './style.js'
 const minTempe=50
 const maxTempe=90
 
-class Thermo extends React.PureComponent{
+class Thermo extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +18,15 @@ class Thermo extends React.PureComponent{
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    if (nextProps.temperature!=this.props.temperature) {
+      nextState.sliderValue= nextProps.temperature   
+      return true
+    }
+    return nextState.temperature!=this.state.temperature
+        || nextState.tempeClass!=this.state.tempeClass
+        || nextProps.seedId!=this.props.seedId
+  }
 
   onSliderChange = (sliderValue) => {
     this.setState({sliderValue});
@@ -36,6 +45,7 @@ class Thermo extends React.PureComponent{
   }
 
   render(){
+    console.log('thermo render '+this.props.temperature)
     return (
       <SafeAreaView >
         <View style={styles.thermo}>
