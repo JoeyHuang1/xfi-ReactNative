@@ -28,7 +28,6 @@ class ThermoList extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log('thermolist componentDidMount')
     this.getThermoList()
   }
 
@@ -52,7 +51,6 @@ class ThermoList extends React.PureComponent {
 
 
   render() {
-    console.log('thermolist render')
     return (
       <SafeAreaView>
         <Text>{this.state.errMsg}</Text>
