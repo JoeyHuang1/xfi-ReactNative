@@ -63,7 +63,7 @@ class ThermoList extends React.PureComponent {
   render() {
     return (
       <SafeAreaView>
-        <ScrollView 
+        <ScrollView maximumZoomScale={2} minimumZoomScale={1}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -75,8 +75,7 @@ class ThermoList extends React.PureComponent {
             <Text style={styles.welcome}>Account 
               <Text> {this.props.account} </Text>
             </Text> 
-            <View style={{ height:600, 
-              justifyContent:"space-evenly"}}>
+            <View style={{ height:600}}>
               {this.props.thermoList}
             </View>
         </ScrollView>

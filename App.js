@@ -7,10 +7,12 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, LayoutAnimation, NativeModules} from 'react-native';
+import {Platform, StyleSheet, Text, View, LayoutAnimation, NativeModules, AsyncStorage} from 'react-native';
 import Login from './src/Login.js'
 import ThermoList from './src/ThermoList.js'
 import { connect } from 'react-redux'
+import ComcastConst from './src/ComcastConst.js'
+import {loginAction} from './src/actions'
 
 const { UIManager } = NativeModules;
 
@@ -24,8 +26,18 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+
 type Props = {};
 class App extends Component<Props> {
+  componentDidMount() {
+    AsyncStorage.multiGet([ ComcastConst.keepLogin, ComcastConst.loginAccessToken, ComcastConst.rememberName])
+    .then((values)=>{
+      if (JSON.parse(values[0][1])){
+        this.props.dispatch(loginAction({'accessToken':values[1][1], 'account':values[2][1]}));    
+      }
+    }).catch((e)=>{})
+  }
+
   render() {
     if (this.props.accessToken==null){
       return (<Login/>)
@@ -51,19 +63,19 @@ var CustomLayoutSpring = {
 };
 
 // Linear with easing
-var CustomLayoutLinear = {
+var CustomLayoutLinear2 = {
   duration: 600,
   create: {
     type: LayoutAnimation.Types.linear,
-    property: LayoutAnimation.Properties.opacity,
+    property: LayoutAnimation.Properties.scaleY,
   },
   update: {
-    type: LayoutAnimation.Types.curveEaseInEaseOut,
+    type: LayoutAnimation.Types.linear,
   },
 };
 
 const mapStateToProps = function(state) {
-  LayoutAnimation.configureNext(CustomLayoutSpring);
+  LayoutAnimation.configureNext(CustomLayoutLinear2);
   return {...state.loginReducer};
 }
 

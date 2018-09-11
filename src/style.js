@@ -17,10 +17,13 @@ const styles = StyleSheet.create({
   },
   thermo:{
     marginTop:10,
+
   },
   input:{
     margin:5,
-    fontSize: 16
+    height:44,
+    fontSize: 16,
+    borderBottomWidth: 1,
   },
   instructions: {
     textAlign: 'center',

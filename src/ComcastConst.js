@@ -13,6 +13,13 @@ const ComcastConst={
     hc_mode:'mode',
     parent_val :'w1qUpEDz_1',
     accessCookie:'accessToken',
+
+    // asyncStorage key
+    keepLogin:'keepLogin',
+    remember:'remember',
+    rememberId:'rememberId',
+    rememberName:'rememberName',
+    loginAccessToken: 'loginAccessToken',
 }
 Object.freeze(ComcastConst)
 

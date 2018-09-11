@@ -19,14 +19,17 @@ class Thermo extends React.Component{
   }
 
   shouldComponentUpdate(nextProps, nextState){
+    let ret = nextProps.temperature!=this.props.temperature
+          || nextState.tempeClass!=this.state.tempeClass
+          || nextProps.seedId!=this.props.seedId
+          || nextState.sliderValue!=this.state.sliderValue
     if (nextProps.temperature!=this.props.temperature) {
       nextState.sliderValue= nextProps.temperature   
-      return true
+      ret = true
     }
-    return nextState.temperature!=this.state.temperature
-        || nextState.tempeClass!=this.state.tempeClass
-        || nextProps.seedId!=this.props.seedId
+    return ret
   }
+
 
   onSliderChange = (sliderValue) => {
     this.setState({sliderValue});
@@ -45,9 +48,8 @@ class Thermo extends React.Component{
   }
 
   render(){
-    console.log('thermo render '+this.props.temperature)
     return (
-      <SafeAreaView >
+
         <View style={styles.thermo}>
           <Text style={styles.normalText}>Thermostat {this.props.name}:
             <Text > {this.state.sliderValue} </Text>
@@ -55,13 +57,13 @@ class Thermo extends React.Component{
           <Slider value={this.state.sliderValue} 
                 minimumValue={minTempe} maximumValue={maxTempe}
                 step={1}
+                style={{height:44}}
                 minimumTrackTintColor="red"
                 maximumTrackTintColor="blue"
                 onValueChange={this.onSliderChange}
                 onSlidingComplete={this.onAfterChange}
           />
         </View>
-      </SafeAreaView>
     );
   }
 }
