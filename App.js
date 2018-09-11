@@ -30,12 +30,18 @@ const instructions = Platform.select({
 type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
-    AsyncStorage.multiGet([ ComcastConst.keepLogin, ComcastConst.loginAccessToken, ComcastConst.rememberName])
-    .then((values)=>{
+    this.readtSavedOpt()
+  }
+
+  readtSavedOpt=async ()=>{
+    try {
+      let values = await AsyncStorage.multiGet([ ComcastConst.keepLogin, ComcastConst.loginAccessToken, ComcastConst.rememberName])
       if (JSON.parse(values[0][1])){
         this.props.dispatch(loginAction({'accessToken':values[1][1], 'account':values[2][1]}));    
-      }
-    }).catch((e)=>{})
+      }  
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render() {

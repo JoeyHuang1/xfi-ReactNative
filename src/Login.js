@@ -16,25 +16,22 @@ class Login extends React.PureComponent {
     super(props);
     this.state = {account:'', password:'', errMsg:null, loginClass:'',
       showLoading:null, keepLogin:false, remember:false, rememberId:''};
+    this.readSavedOpt()
+  }
 
-    AsyncStorage.getItem(ComcastConst.keepLogin)
-      .then(( keepLogin)=>{
-        if (keepLogin) {
-          this.setState({'keepLogin':JSON.parse(keepLogin)})
-        }
-      }).catch((e)=>{
-        console.log(e)
-      })
-    AsyncStorage.multiGet([ComcastConst.remember, ComcastConst.rememberId])
-      .then((values)=>{
-        let rem = JSON.parse(values[0][1])
+  readSavedOpt=async ()=>{
+    try {
+      let keepLogin = await AsyncStorage.getItem(ComcastConst.keepLogin)
+      this.setState({'keepLogin':JSON.parse(keepLogin)})
 
-        if (rem) {
-          this.setState({'remember':rem,'account':values[1][1]})
-        }
-      }).catch((e)=>{
-        console.log(e)
-      })
+      let values = await AsyncStorage.multiGet([ComcastConst.remember, ComcastConst.rememberId])
+      let rem = JSON.parse(values[0][1])
+      if (rem) {
+        this.setState({'remember':rem,'account':values[1][1]})
+      }
+    }catch(e){
+      console.log(e)
+    }
   }
 
   passwordChange=(text)=>{
