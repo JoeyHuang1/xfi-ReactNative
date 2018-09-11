@@ -43,9 +43,13 @@ class Login extends React.PureComponent {
   }
 
   saveAccount=(event)=>{
-    if (this.state.remember) {
-      AsyncStorage.setItem(ComcastConst.rememberId, this.state.account).catch()
-    }
+    if (this.state.remember ) {
+      if (this.state.account)
+        AsyncStorage.setItem(ComcastConst.rememberId, 
+          this.state.account).catch()
+      else
+        AsyncStorage.removeItem(ComcastConst.rememberId).catch()
+  }
   }
 
   keepLoginChange=(val)=>{
@@ -91,7 +95,9 @@ class Login extends React.PureComponent {
   render() {
     return (
       <SafeAreaView>
-        <KeyboardAvoidingView keyboardVerticalOffset={10}>
+        <KeyboardAvoidingView keyboardVerticalOffset={10}
+        >
+
           <Text style={styles.welcome}>Please login:</Text>
           <TextInput 
             style={styles.input}
@@ -114,15 +120,18 @@ class Login extends React.PureComponent {
             onPress={this.handleSubmit}
             title="Login"
           />
+
           <View style={{ flexDirection:'row', alignItems:'center'}}>
-            <Text>Remember email: </Text>     
+            <Text> Remember me: </Text>     
             <Switch value={this.state.remember}
+              style={{margin:3}}
               onValueChange={this.rememberChange}
             ></Switch>
           </View>
           <View style={{ flexDirection:'row', alignItems:'center'}}>
-            <Text >Keep login: </Text>
+            <Text > Keep login: </Text>
             <Switch value={this.state.keepLogin}
+              style={{margin:3}}
               onValueChange={this.keepLoginChange}
             ></Switch>
           </View>
