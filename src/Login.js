@@ -117,13 +117,13 @@ class Login extends React.PureComponent {
             onPress={this.handleSubmit}
             title="Login"
           />
-          <View style={{height:44, flexDirection:'row', alignItems:'center'}}>
+          <View style={{ flexDirection:'row', alignItems:'center'}}>
             <Text>Remember email: </Text>     
             <Switch value={this.state.remember}
               onValueChange={this.rememberChange}
             ></Switch>
           </View>
-          <View style={{height:44, flexDirection:'row', alignItems:'center'}}>
+          <View style={{ flexDirection:'row', alignItems:'center'}}>
             <Text >Keep login: </Text>
             <Switch value={this.state.keepLogin}
               onValueChange={this.keepLoginChange}
