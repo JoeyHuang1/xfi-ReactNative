@@ -11,27 +11,52 @@ const loginErrMsg = <Text style={{top:10}}>Login failed. Please try again.</Text
 const loadingIcon = <ActivityIndicator size="small" color="#00ff00" 
           style={{top:10}}/>
 
+
 class Login extends React.PureComponent {
     constructor(props) {
     super(props);
+  
     this.state = {account:'', password:'', errMsg:null, loginClass:'',
+      initPwdFocus:false,optLoaded:false,
       showLoading:null, keepLogin:false, remember:false, rememberId:''};
     this.readSavedOpt()
   }
 
+
   readSavedOpt=async ()=>{
     try {
-      let keepLogin = await AsyncStorage.getItem(ComcastConst.keepLogin)
-      this.setState({'keepLogin':JSON.parse(keepLogin)})
+      let keepLoginPromise =  AsyncStorage.getItem(ComcastConst.keepLogin)
 
-      let values = await AsyncStorage.multiGet([ComcastConst.remember, ComcastConst.rememberId])
+      let valuesPromise =  AsyncStorage.multiGet([ComcastConst.remember, ComcastConst.rememberId])
+
+      await Promise.all([keepLoginPromise, valuesPromise])
+      let keepLogin = await keepLoginPromise
+      let values = await valuesPromise
+
+      if (!this.mounted)
+        return
+      this.setState({'keepLogin':JSON.parse(keepLogin)})
       let rem = JSON.parse(values[0][1])
-      if (rem) {
-        this.setState({'remember':rem,'account':values[1][1]})
+      if (rem ) {
+        this.state.remember = rem
+        if (values[1][1] && values[1][1].length>0) {
+          this.setState({account:values[1][1],
+            initPwdFocus:true})
+        }
       }
     }catch(e){
-      console.log(e)
+      console.log('readSavedOpt exception '+e)
     }
+
+    this.setState({optLoaded:true})
+  }
+
+  componentDidMount() {
+    this.mounted = true
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
   }
 
   passwordChange=(text)=>{
@@ -60,12 +85,10 @@ class Login extends React.PureComponent {
   }
 
   rememberChange=(val)=>{
-    console.log('rem change '+val)
     this.setState({remember: val})
     AsyncStorage.setItem(ComcastConst.remember, JSON.stringify(val)).catch()
     if (!val)
       AsyncStorage.removeItem(ComcastConst.rememberId).catch()
-    console.log('done rem change '+val)
   }
 
   getAccessToken= async (account, password)=>{    
@@ -93,6 +116,9 @@ class Login extends React.PureComponent {
   }
 
   render() {
+    if (!this.state.optLoaded)
+      return null
+
     return (
       <SafeAreaView>
         <KeyboardAvoidingView keyboardVerticalOffset={10}
@@ -100,22 +126,24 @@ class Login extends React.PureComponent {
 
           <Text style={styles.welcome}>Please login:</Text>
           <TextInput 
-            style={styles.input}
-            value={this.state.account} 
-            onChangeText={this.accountChange}
-            onEndEditing={this.saveAccount}
-            autoCapitalize={"none"}
-            placeholder="email address" />
+                  style={styles.input}
+                  value={this.state.account} 
+                  onChangeText={this.accountChange}
+                  onEndEditing={this.saveAccount}
+                  autoFocus={!this.state.initPwdFocus}
+                  autoCapitalize={"none"}
+                  placeholder="email address" />
           <TextInput  
-            style={styles.input}
-            value={this.state.password} 
-            autoCapitalize={"none"}
-            textContentType="password"
-            returnKeyType="go"
-            secureTextEntry={true}
-            onChangeText={this.passwordChange}
-            onSubmitEditing={this.handleSubmit}
-            placeholder="password" />
+                  style={styles.input}
+                  value={this.state.password} 
+                  autoFocus={this.state.initPwdFocus}
+                  autoCapitalize={"none"}
+                  textContentType="password"
+                  returnKeyType="go"
+                  secureTextEntry={true}
+                  onChangeText={this.passwordChange}
+                  onSubmitEditing={this.handleSubmit}
+                  placeholder="password" />
           <Button 
             onPress={this.handleSubmit}
             title="Login"
