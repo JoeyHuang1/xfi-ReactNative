@@ -7,7 +7,7 @@ import ComcastConst from './ComcastConst.js'
 import {Text,  Button, TextInput, SafeAreaView, ActivityIndicator, KeyboardAvoidingView, Switch, AsyncStorage, View} from 'react-native';
 import styles from './style.js'
 
-const loginErrMsg = <Text style={{top:10}}>Login failed. Please try again.</Text>
+const loginErrMsg = <Text >Login failed. Please try again.</Text>
 const loadingIcon = <ActivityIndicator size="small" color="#00ff00" 
           style={{top:10}}/>
 
@@ -17,7 +17,7 @@ class Login extends React.PureComponent {
     super(props);
   
     this.state = {account:'', password:'', errMsg:null, loginClass:'',
-      initPwdFocus:false,optLoaded:false, idInput:null,
+      initPwdFocus:false,optLoaded:false, 
       showLoading:null, keepLogin:false, remember:false, rememberId:''};
     this.readSavedOpt()
   }
@@ -51,6 +51,7 @@ class Login extends React.PureComponent {
     this.setState({optLoaded:true})
   }
 
+
   componentDidMount() {
     this.mounted = true
   }
@@ -60,11 +61,11 @@ class Login extends React.PureComponent {
   }
 
   passwordChange=(text)=>{
-    this.state.password= text
+    this.setState({password: text})
   }
 
   accountChange=(text)=>{
-    this.state.account= text
+    this.setState({account: text})
   }
 
   saveAccount=(event)=>{
@@ -123,11 +124,11 @@ class Login extends React.PureComponent {
         >
 
           <Text style={styles.welcome}>Please login:</Text>
-          {this.state.optLoaded?
+          {this.state.optLoaded && 
             <View>
               <TextInput 
                 style={styles.input}
-                value={this.props.account} 
+                value={this.state.account}
                 onChangeText={this.accountChange}
                 onEndEditing={this.saveAccount}
                 autoFocus={!this.state.initPwdFocus}
@@ -145,7 +146,7 @@ class Login extends React.PureComponent {
                 onSubmitEditing={this.handleSubmit}
                 placeholder="password" />
             </View>
-          :null}
+          }
 
           <Button 
             onPress={this.handleSubmit}
@@ -170,7 +171,7 @@ class Login extends React.PureComponent {
           {this.state.errMsg}
         </KeyboardAvoidingView>
       </SafeAreaView>
-    );
+    )
   }
 }
 
