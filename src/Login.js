@@ -17,7 +17,7 @@ class Login extends React.PureComponent {
     super(props);
   
     this.state = {account:'', password:'', errMsg:null, loginClass:'',
-      initPwdFocus:false,optLoaded:false,
+      initPwdFocus:false,optLoaded:false, idInput:null,
       showLoading:null, keepLogin:false, remember:false, rememberId:''};
     this.readSavedOpt()
   }
@@ -60,11 +60,11 @@ class Login extends React.PureComponent {
   }
 
   passwordChange=(text)=>{
-    this.setState({password: text})
+    this.state.password= text
   }
 
   accountChange=(text)=>{
-    this.setState({account: text})
+    this.state.account= text
   }
 
   saveAccount=(event)=>{
@@ -116,8 +116,6 @@ class Login extends React.PureComponent {
   }
 
   render() {
-    if (!this.state.optLoaded)
-      return null
 
     return (
       <SafeAreaView>
@@ -125,25 +123,30 @@ class Login extends React.PureComponent {
         >
 
           <Text style={styles.welcome}>Please login:</Text>
-          <TextInput 
-                  style={styles.input}
-                  value={this.state.account} 
-                  onChangeText={this.accountChange}
-                  onEndEditing={this.saveAccount}
-                  autoFocus={!this.state.initPwdFocus}
-                  autoCapitalize={"none"}
-                  placeholder="email address" />
-          <TextInput  
-                  style={styles.input}
-                  value={this.state.password} 
-                  autoFocus={this.state.initPwdFocus}
-                  autoCapitalize={"none"}
-                  textContentType="password"
-                  returnKeyType="go"
-                  secureTextEntry={true}
-                  onChangeText={this.passwordChange}
-                  onSubmitEditing={this.handleSubmit}
-                  placeholder="password" />
+          {this.state.optLoaded?
+            <View>
+              <TextInput 
+                style={styles.input}
+                value={this.props.account} 
+                onChangeText={this.accountChange}
+                onEndEditing={this.saveAccount}
+                autoFocus={!this.state.initPwdFocus}
+                autoCapitalize={"none"}
+                placeholder="email address" />          
+              <TextInput  
+                style={styles.input}
+                value={this.props.password} 
+                autoFocus={this.state.initPwdFocus}
+                autoCapitalize={"none"}
+                textContentType="password"
+                returnKeyType="go"
+                secureTextEntry={true}
+                onChangeText={this.passwordChange}
+                onSubmitEditing={this.handleSubmit}
+                placeholder="password" />
+            </View>
+          :null}
+
           <Button 
             onPress={this.handleSubmit}
             title="Login"
