@@ -3,24 +3,26 @@ import thermoService from './thermoService.js'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import {setTempeDoneAction} from './actions'
-import {Text, Slider, SafeAreaView, View} from 'react-native';
+import {Text, Slider, View, ActivityIndicator} from 'react-native';
 import styles from './style.js'
 
 const minTempe=50
 const maxTempe=90
 
+const loadingIcon = <ActivityIndicator size="small" color="#00ff00" />
+
 class Thermo extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      tempeClass:'',
+      showloading:false,
       sliderValue: this.props.temperature,
     };
   }
 
   shouldComponentUpdate(nextProps, nextState){
     let ret = nextProps.temperature!=this.props.temperature
-          || nextState.tempeClass!=this.state.tempeClass
+          || nextState.showloading!=this.state.showloading
           || nextProps.seedId!=this.props.seedId
           || nextState.sliderValue!=this.state.sliderValue
     if (nextProps.temperature!=this.props.temperature) {
@@ -36,7 +38,7 @@ class Thermo extends React.Component{
   }
 
   onAfterChange = async (value) => {
-    this.setState({tempeClass: 'blinkClass'})
+    this.setState({showloading:true})
     try {
       await thermoService(this.props.accessToken, this.props.seedId, 
             value)
@@ -44,16 +46,19 @@ class Thermo extends React.Component{
     }catch(e){
       this.setState({sliderValue: this.props.temperature})
     }
-    this.setState({tempeClass: ''})
+    this.setState({showloading:false})
   }
 
   render(){
     return (
 
         <View style={styles.thermo}>
-          <Text style={styles.normalText}>Thermostat {this.props.name}:
-            <Text > {this.state.sliderValue} </Text>
-          </Text>
+          <View style={{ flexDirection:'row'}}>
+            <Text style={styles.normalText}>Thermostat {this.props.name}:
+              <Text > {this.state.sliderValue} </Text>
+            </Text>
+            {this.state.showloading && loadingIcon}
+          </View>
           <Slider value={this.state.sliderValue} 
                 minimumValue={minTempe} maximumValue={maxTempe}
                 step={1}

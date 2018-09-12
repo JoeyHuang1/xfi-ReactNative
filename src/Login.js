@@ -8,17 +8,16 @@ import {Text,  Button, TextInput, SafeAreaView, ActivityIndicator, KeyboardAvoid
 import styles from './style.js'
 
 const loginErrMsg = <Text >Login failed. Please try again.</Text>
-const loadingIcon = <ActivityIndicator size="small" color="#00ff00" 
-          style={{top:10}}/>
+const loadingIcon = <ActivityIndicator size="small" color="#00ff00" />
 
 
 class Login extends React.PureComponent {
     constructor(props) {
     super(props);
   
-    this.state = {account:'', password:'', errMsg:null, loginClass:'',
-      initPwdFocus:false,optLoaded:false, 
-      showLoading:null, keepLogin:false, remember:false, rememberId:''};
+    this.state = {account:'', password:'', errMsg:null, 
+      initPwdFocus:false, optLoaded:false, 
+      showLoading:false, keepLogin:false, remember:false, rememberId:''};
     this.readSavedOpt()
   }
 
@@ -95,10 +94,10 @@ class Login extends React.PureComponent {
   getAccessToken= async (account, password)=>{    
     let errMsg=null
     this.saveAccount()
-    this.setState({loginClass:'blinkClass', showloading:loadingIcon, errMsg})
+    this.setState({ showloading:true, errMsg})
     try {
       let respObj = await loginService(account, password) 
-      this.setState({errMsg: null, loginClass:'', showloading:null})
+      this.setState({errMsg: null,  showloading:false})
       if (this.state.keepLogin)
         AsyncStorage.multiSet([[ComcastConst.loginAccessToken, respObj.access_token],  [ComcastConst.rememberName, respObj.fullName]]).catch()
       this.props.afterLogin(respObj.access_token, respObj.fullName)
@@ -108,7 +107,7 @@ class Login extends React.PureComponent {
       // can't move this setState after catch.
       // It will report warning in console log since 
       // afterLogin() already unmount login component
-      this.setState({errMsg , loginClass:'', showloading:null}) 
+      this.setState({errMsg ,  showloading:false}) 
     }
   }
   
@@ -167,7 +166,7 @@ class Login extends React.PureComponent {
               onValueChange={this.keepLoginChange}
             ></Switch>
           </View>
-          {this.state.showloading}
+          {this.state.showloading && loadingIcon}
           {this.state.errMsg}
         </KeyboardAvoidingView>
       </SafeAreaView>
