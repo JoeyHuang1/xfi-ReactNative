@@ -51,11 +51,11 @@ class Thermo extends React.Component{
   }
 
   render(){
-    console.log(this.props.name+' thermo render '+this.state.sliderValue)
+    console.log(styles.thermo.height+' thermo render '+this.state.sliderValue)
     return (
 
         <View style={styles.thermo}>
-          <View style={{ flexDirection:'row'}}>
+          <View style={styles.thermoTitle}>
             <Text style={styles.normalText}>Thermostat {this.props.name}:
               <Text > {this.state.sliderValue} </Text>
             </Text>
@@ -64,7 +64,7 @@ class Thermo extends React.Component{
           <Slider value={this.state.sliderValue} 
                 minimumValue={minTempe} maximumValue={maxTempe}
                 step={1}
-                style={{height:44}}
+                style={styles.slider}
                 minimumTrackTintColor="red"
                 maximumTrackTintColor="blue"
                 onValueChange={this.onSliderChange}

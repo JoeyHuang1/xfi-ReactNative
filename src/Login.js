@@ -152,17 +152,17 @@ class Login extends React.PureComponent {
             title="Login"
           />
 
-          <View style={{ flexDirection:'row', alignItems:'center'}}>
+          <View style={styles.loginSaveOpt}>
             <Text> Remember me: </Text>     
             <Switch value={this.state.remember}
-              style={{margin:3}}
+              style={styles.loginSwitch}
               onValueChange={this.rememberChange}
             ></Switch>
           </View>
-          <View style={{ flexDirection:'row', alignItems:'center'}}>
+          <View style={styles.loginSaveOpt}>
             <Text > Keep login: </Text>
             <Switch value={this.state.keepLogin}
-              style={{margin:3}}
+              style={styles.loginSwitch}
               onValueChange={this.keepLoginChange}
             ></Switch>
           </View>

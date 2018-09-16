@@ -30,6 +30,22 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  loginSwitch:{
+    margin:3
+  },
+  loginSaveOpt:{
+    flexDirection:'row', 
+    alignItems:'center'
+  },
+  slider:{
+    height:44 
+  },
+  thermoTitle:{
+    flexDirection:'row'
+  },
+  thermo: {
+    flex:1
+  }
 });
 
 export default styles

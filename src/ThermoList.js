@@ -14,7 +14,10 @@ function renderThermo(thermos){
   let thermoList=[]
   for (let attr in thermos){
     let thermo = thermos[attr]
-    thermoList.push(<Thermo style={{flex:1}} key={thermo.seedId}
+
+    // adding inline object into component cause extra render trigger in Android
+    // so removing style={{flex:1}} or change it to style={constStyle}
+    thermoList.push(<Thermo  style={styles.thermo} key={thermo.seedId}
       seedId={thermo.seedId}/>)
   }
   return thermoList
@@ -75,7 +78,7 @@ class ThermoList extends React.PureComponent {
             <Text style={styles.welcome}>Account 
               <Text> {this.props.account} </Text>
             </Text> 
-            <View style={{ height:600}}>
+            <View >
               {this.props.thermoList}
             </View>
         </ScrollView>
