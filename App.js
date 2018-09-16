@@ -28,7 +28,7 @@ const instructions = Platform.select({
 
 
 type Props = {};
-class App extends Component<Props> {
+class App extends React.PureComponent<Props> {
   componentDidMount() {
     this.readtSavedOpt()
   }
@@ -49,7 +49,9 @@ class App extends Component<Props> {
       return (<Login/>)
     }
     else {
-      return(<ThermoList/>)
+      return(
+        <ThermoList/>
+      )
     }
   }
 }
@@ -70,7 +72,7 @@ var CustomLayoutSpring = {
 
 // Linear with easing
 var CustomLayoutLinear2 = {
-  duration: 600,
+  duration: 300,
   create: {
     type: LayoutAnimation.Types.linear,
     property: LayoutAnimation.Properties.scaleY,

@@ -20,14 +20,15 @@ class Thermo extends React.Component{
     };
   }
 
+  
   shouldComponentUpdate(nextProps, nextState){
     let ret = nextProps.temperature!=this.props.temperature
           || nextState.showloading!=this.state.showloading
           || nextProps.seedId!=this.props.seedId
+          || nextProps.name!=this.props.name
           || nextState.sliderValue!=this.state.sliderValue
     if (nextProps.temperature!=this.props.temperature) {
       nextState.sliderValue= nextProps.temperature   
-      ret = true
     }
     return ret
   }
@@ -50,6 +51,7 @@ class Thermo extends React.Component{
   }
 
   render(){
+    console.log(this.props.name+' thermo render '+this.state.sliderValue)
     return (
 
         <View style={styles.thermo}>
@@ -81,6 +83,8 @@ const mapStateToProps = function(state, ownProps) {
   return {...state.loginReducer, 
       'temperature':
         state.thermoListReducer.thermos[ownProps.seedId].temperature,
+      'name':
+        state.thermoListReducer.thermos[ownProps.seedId].name,
     };
 }
 
