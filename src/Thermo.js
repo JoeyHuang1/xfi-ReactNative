@@ -11,7 +11,7 @@ const maxTempe=90
 
 const loadingIcon = <ActivityIndicator size="small" color="#00ff00" />
 
-class Thermo extends React.Component{
+class Thermo extends React.PureComponent{
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,8 @@ class Thermo extends React.Component{
     };
   }
 
-  
+  /* //no need to set props temperature into state.sliderValue
+    // do that in onAfterChange(), after calling the setTempe action
   shouldComponentUpdate(nextProps, nextState){
     let ret = nextProps.temperature!=this.props.temperature
           || nextState.showloading!=this.state.showloading
@@ -32,7 +33,7 @@ class Thermo extends React.Component{
     }
     return ret
   }
-
+*/
 
   onSliderChange = (sliderValue) => {
     this.setState({sliderValue});
@@ -51,7 +52,7 @@ class Thermo extends React.Component{
   }
 
   render(){
-    console.log(styles.thermo.height+' thermo render '+this.state.sliderValue)
+    //console.log(this.state.showloading+' thermo render '+this.props.temperature)
     return (
 
         <View style={styles.thermo}>
