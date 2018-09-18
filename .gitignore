@@ -65,4 +65,8 @@ android/app/build/
 android/.gradle/*/taskHistory/
 android/build
 
-android/.gradle/*/javaCompile
+android/.gradle/4.4
+android/.gradle/3.5.1
+android/.gradle/buildOutputCleanup
+android/.idea
+ios/Pods
